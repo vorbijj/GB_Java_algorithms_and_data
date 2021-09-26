@@ -4,6 +4,7 @@ public class MyDeque<T> {
     private T[] list;
     private int size;
     private final int DEFAULT_CAPACITY = 10;
+    private int increaseCapacity = DEFAULT_CAPACITY;
     private int begin;
     private int end;
 
@@ -44,8 +45,7 @@ public class MyDeque<T> {
 
     public void insertFront(T item) {
         if (isFull()) {
-            //Расширение массива***
-            throw new RuntimeException("Deque isFull");
+            reCapacity();
         }
         if (isEmpty()) {
             size++;
@@ -59,8 +59,7 @@ public class MyDeque<T> {
 
     public void insertRear(T item) {
         if (isFull()) {
-            //Расширение массива***
-            throw new RuntimeException("Deque isFull");
+            reCapacity();
         }
         if (isEmpty()) {
             size++;
@@ -104,6 +103,17 @@ public class MyDeque<T> {
 
     public boolean isFull() {
         return size == list.length;
+    }
+
+    private void reCapacity(){
+        increaseCapacity *= 2;
+        int r = size - begin;
+        T[] temp = (T[]) new Object[increaseCapacity];
+        System.arraycopy(list, begin, temp, 0, r);
+        System.arraycopy(list, 0, temp, r, begin);
+        list = temp;
+        begin = 0;
+        end = size - 1;
     }
 
 }

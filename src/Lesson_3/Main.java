@@ -19,6 +19,10 @@ public class Main {
         deque.insertRear(9);
         deque.insertRear(9);
         deque.insertRear(12);
+        deque.insertRear(13);
+        deque.insertRear(14);
+        deque.insertRear(15);
+        deque.insertFront(744);
 
         int x = deque.size();
 
@@ -26,7 +30,8 @@ public class Main {
         System.out.println("Последний в deque, " + deque.peekRear());
 
         for (int i = 0; i < x; i++) {
-            System.out.println(deque.removeRear());
+            System.out.print(deque.removeRear());
+            System.out.print(" ");
         }
 
     }

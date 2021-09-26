@@ -28,8 +28,7 @@ public class MyStack<T> {
 
     public void push(T item) {
         if (isFull()) {
-            increaseCapacity *= 2;
-            reCapacity(increaseCapacity);
+            reCapacity();
         }
         list[size] = item;
         size++;
@@ -54,8 +53,9 @@ public class MyStack<T> {
         return size == list.length;
     }
 
-    private void reCapacity(int newSize){
-        T[] temp = (T[]) new Object[newSize];
+    private void reCapacity(){
+        increaseCapacity *= 2;
+        T[] temp = (T[]) new Object[increaseCapacity];
         System.arraycopy(list, 0, temp, 0, size);
         list = temp;
     }

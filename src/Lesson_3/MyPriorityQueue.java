@@ -28,8 +28,7 @@ public class MyPriorityQueue<T extends Comparable<T>> {
 
     public void insert(T item) {
         if (isFull()) {
-            increaseCapacity *= 2;
-            reCapacity(increaseCapacity);
+            reCapacity();
         }
         list[size] = item;
         size++;
@@ -59,8 +58,9 @@ public class MyPriorityQueue<T extends Comparable<T>> {
         return size == list.length;
     }
 
-    private void reCapacity(int newSize) {
-        T[] temp = (T[]) new Comparable[newSize];
+    private void reCapacity() {
+        increaseCapacity *= 2;
+        T[] temp = (T[]) new Comparable[increaseCapacity];
         System.arraycopy(list, 0, temp, 0, size);
         list = temp;
     }

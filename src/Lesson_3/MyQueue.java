@@ -4,6 +4,7 @@ public class MyQueue<T> {
     private T[] list;
     private int size;
     private final int DEFAULT_CAPACITY = 10;
+    private int increaseCapacity = DEFAULT_CAPACITY;
     private int begin;
     private int end;
 
@@ -32,8 +33,7 @@ public class MyQueue<T> {
 
     public void insert(T item) {
         if (isFull()) {
-            //Расширение массива***
-            throw new RuntimeException("Queue isFull");
+            reCapacity();
         }
         size++;
         list[end] = item;
@@ -59,5 +59,16 @@ public class MyQueue<T> {
 
     public boolean isFull() {
         return size == list.length;
+    }
+
+    private void reCapacity(){
+        increaseCapacity *= 2;
+        int r = size - begin;
+        T[] temp = (T[]) new Object[increaseCapacity];
+        System.arraycopy(list, begin, temp, 0, r);
+        System.arraycopy(list, 0, temp, r, begin);
+        list = temp;
+        begin = 0;
+        end = size;
     }
 }
