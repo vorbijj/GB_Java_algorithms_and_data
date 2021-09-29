@@ -53,7 +53,7 @@ public class MyLinkedList<T> implements Iterable<T> {
         return new Iter();
     }
 
-    private class Iter implements Iterator<T>{
+    private class Iter implements Iterator<T> {
         Node current = new Node(null, first);
 
         @Override
@@ -137,7 +137,7 @@ public class MyLinkedList<T> implements Iterable<T> {
             insertFirst(item);
             return;
         }
-        if (index == size ) {
+        if (index == size) {
             insertLast(item);
             return;
         }
@@ -195,6 +195,21 @@ public class MyLinkedList<T> implements Iterable<T> {
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    public int indexOf(T item) {
+        int index = 0;
+        Node current = first;
+
+        while (current != null && !current.getValue().equals(item)) {
+            current = current.getNext();
+            ++index;
+        }
+        if (current == null) {
+            return -1;
+        }
+
+        return index;
     }
 
 }

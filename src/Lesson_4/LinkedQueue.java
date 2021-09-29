@@ -32,4 +32,8 @@ public class LinkedQueue<T> {
         return list.toString();
     }
 
+    public int indexOf(T item) {
+        return list.indexOf(item);
+    }
+
 }
